@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+<!--ng-app quando nomeado refere a criação de um modulo-->
+<html ng-app="app">
+<head>
+    <meta charset="utf-8" />
+    <title>Aula 3 AngularJS - Diretivas</title>
+    <link href="/content/bootstrap.min.css" rel="stylesheet" />
+    <link href="/content/toastr.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <style>
+        .todo-true {
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+<body>
+    <div ng-controller="MeuCtrl" class="container">
+        <h1>{{title}}</h1>
+        <div class="row">
+            <!--diretivas podem ser templates internos ou externos-->
+            <div my-customer></div>
+        </div>
+        <hr />
+        <div class="row">
+            <!--exemplo de diretiva com template externo fixo-->
+            <div my-template-url></div>
+        </div>
+        <div class="row">
+            <!--exemplo e criação de uma diretiva generica dentro de um laço de repetição-->
+            <div class="col-md-4" ng-repeat="cliente in clientes" my-customer-generic cliente="cliente"></div>
+        </div>
+    </div>
+
+    <script src="/Scripts/angular.js"></script>
+    <script src="/Scripts/jquery-3.5.1.min.js"></script>
+    <script src="/Scripts/toastr.js"></script>
+    <script>
+        //O app referenciado é o nome do modulo no ng-app
+        const app = angular.module('app', []);
+
+        //onde está colocado o "$scope" indica o que o controller utiliza internamente
+        //dentro do contexto do app é criado o controller que gerencia a div ou elemento em tela
+        app.controller("MeuCtrl", ['$scope', function ($scope) {
+            $scope.title = "Diretivas";
+            $scope.cliente = {
+                nome: "Eliane",
+                sobrenome: "Silvestre",
+                desc: "elianesilvestre@gmail.com"
+            }
+            $scope.clientes = [
+                {
+                nome: "Raphael",
+                sobrenome: "Silvestre",
+                desc: "rssshev@gmail.com"
+                 },
+                {
+                    nome: "Monica",
+                    sobrenome: "Silva",
+                    desc:"josefamonica@gmail.com"
+                }
+            ]
+        }]);
+
+        //criação de diretivas dentro do modulo app
+        app.directive("myCustomer", function () {
+            return {
+                template: "Nome: {{cliente.nome}}, Sobrenome: {{cliente.sobrenome}}"
+            }
+        });
+
+        app.directive("myTemplateUrl", function () {
+            return {
+                templateUrl: "my-template-url.html"
+            }
+        });
+
+        app.directive("myCustomerGeneric", function () {
+            return {
+                templateUrl: "my-template-url.html",
+                scope: {
+                    cliente: "="
+                }
+            }
+        })
+    </script>
+</body>
+</html>

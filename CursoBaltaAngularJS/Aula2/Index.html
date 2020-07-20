@@ -1,0 +1,130 @@
+﻿<!DOCTYPE html>
+<html ng-app>
+<head>
+    <meta charset="utf-8" />
+    <title>Aula 2 Curso AngularJS</title>
+    <link href="/content/bootstrap.min.css" rel="stylesheet" />
+    <link href="/content/toastr.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <style>
+        .todo-true {
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+<body>
+    <!--A função que é o controlador, controla apenas a div que está com a tag ng-controller-->
+    <div class="container" ng-controller="MeuCtrl">
+        <h1 class="text-center">{{title}} - {{remainning()}}</h1>
+        <hr />
+        <div class="col-md-4">
+            <h3>Minhas Tarefas</h3>
+            <ul class="list-unstyled">
+                <!--ng repeat itera sobre o objeto-->
+                <li ng-repeat="todo in todos">
+                    <input type="hidden" value="{{todo.id}}" />
+                    <input type="checkbox" ng-model="todo.done" />
+                    <span class="todo-{{todo.done}}">{{todo.text}}</span>
+                    <div class="btn-group pull-right">
+                        <button class="btn btn-dark btn-sm" ng-click="editar(todo)">
+                            <i class="fa fa-edit"></i>
+                        </button>
+                        <button class="btn btn-dark btn-sm" ng-click="remover(todo)">
+                            <i class="fa fa-remove"></i>
+                        </button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-4">
+            <h3>Gerenciar tarefas</h3>
+            <input type="hidden" ng-model="todo.id" />
+            <input type="text" class="form-control" ng-model="todo.text" />
+            <input type="checkbox" ng-model="todo.done" /> Tarefa Concluida
+            <hr />
+            <!--ng show e ng hide, esconde ou mostram de acordo com uma expressão acontecer verdadeira-->
+            <button class="btn btn-primary" ng-show="todo.id == 0" ng-click="salvar(todo)">Salvar</button>
+            <button class="btn btn-primary" ng-hide="todo.id == 0" ng-click="novo()">Novo</button>
+            <button class="btn btn-primary" ng-show="todo.id == 0" ng-click="novo()">Cancelar</button>
+        </div>
+        <br /> 
+        <hr /> 
+        <div class="col-md-4">
+            <h3>Ações</h3>
+            <p>O que deseja fazer:</p>
+            <br />
+            <br />
+            <div class="btn-group-sm">
+                <button class="btn btn-info" ng-click="salvarDisco()">Salvar em disco</button>
+                <button class="btn btn-success" ng-click="lerDisco()">Ler do disco</button>
+                <button class="btn btn-danger" ng-click="limparDisco()">Limpar Disco</button>
+            </div>
+        </div>
+    </div>
+
+    <!--jquery sempre deve vir antes de bibliotecas que manipulam eventos em tela pois auxiliam as mesmas-->
+    <script src="/Scripts/angular.js"></script>
+    <script src="/Scripts/jquery-3.5.1.min.js"></script>
+    <script src="/Scripts/toastr.js"></script>
+    <script>
+        function MeuCtrl($scope) {
+            $scope.title = "Minha Lista de Tarefas";
+            $scope.todo = {
+                id: 0,
+                text: "",
+                done: false,
+            }
+            $scope.todos = [];
+
+            $scope.remainning = function () {
+                let count = 0;
+                angular.forEach($scope.todos, function (todo) {
+                    count += todo.done ? 0 : 1;
+                });
+                return count;
+            }
+            $scope.salvar = function (todo) {
+                if (todo.id == 0) {
+                    Salvar(todo);
+                }
+            }
+            $scope.novo = function () {
+                $scope.todo = {
+                 id: 0,
+                 text: "",
+                 done: false,
+                 }
+            }
+
+            $scope.editar = function (todo) {
+                $scope.todo = todo
+            }
+
+            $scope.remover = function (todo) {
+                let index = $scope.todos.indexOf(todo);
+                $scope.todos.splice(index, 1);
+            }
+
+            $scope.salvarDisco = function () {
+                localStorage.setItem("todos", JSON.stringify($scope.todos));
+                toastr.success("Informações salvas com sucesso!","Tudo certo!");
+            }
+
+            $scope.lerDisco = function () {
+                $scope.todos = angular.fromJson(localStorage.getItem("todos"));
+                toastr.info("Informações carregadas com sucesso!", "Tudo certo!");
+            }
+
+            $scope.limparDisco = function () {
+                localStorage.removeItem("todos");
+                toastr.error("Informações apagadas com êxito!", "Tudo certo!");
+            }
+
+            function Salvar(item) {
+                item.id = $scope.todos.length + 1
+                $scope.todos.push(item);
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<!--ng-app diz que a pagina é parte de uma aplicação angular podendo até dar um nome-->
+<html ng-app>
+<head>
+    <meta charset="utf-8" />
+    <title>Bem-vindo ao AngularJS</title>
+    <link href="/content/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <!--ng-model é uma forma de bind entre elementos na tela-->
+    <input type="text" ng-model="name" placeholder="Digite seu nome" name="name" value="" />
+    <h1>Olá, {{name}}</h1>
+    <br />
+    <br />
+    <hr />
+    <!--ng-controller atribui qual controlador javascript manipula o elemento em tela-->
+    <div class="container" ng-controller="MeuCtrl">
+        <h1>{{ title }}</h1>
+        <ul>
+            <!--ng-repeat itera sobre um array ou objeto-->
+            <li ng-repeat="item in itens">{{item.id}}/{{item.name}}</li>
+        </ul>
+    <br />
+    <br />
+    <hr />
+    <input type="text" value="" class="form-control col-md-4" placeholder="Mensagem" ng-model="message" />
+    <!--ng-click atribui um evento de click chamando uma função interna ao controlador-->
+    <button class="btn btn-outline-primary" ng-click="disparaAlerta()">Alerta</button>
+    <button class="btn btn-outline-primary" ng-click="disparaMensagem(message)">Dispara Mensagem</button>
+    <button class="btn btn-outline-primary" ng-click="adicionaItem(message)">Adicionar Item</button>
+    </div>
+    <script src="/Scripts/angular.min.js"></script>
+    <script>
+        //nome da função que engloba o escopo representa o nome do controlador
+        //$scope trata do escopo local da pagina podendo criar funcões e variaveis dentro do escopo
+        function MeuCtrl($scope) {
+            $scope.title = "Meu titulo";
+            $scope.itens = [
+                { id: 01, name: "Item 01" },
+                { id: 02, name: "Item 02" },
+                { id: 03, name: "Item 03" },
+                { id: 04, name: "Item 04" },
+            ];
+            $scope.disparaAlerta = function () {
+                alert("Olá");
+            }
+            $scope.disparaMensagem = function (message) {
+                alert(message)
+            }
+            $scope.adicionaItem = function (message) {
+                let id = $scope.itens.length + 1;
+                $scope.itens.push({ id: id, name: message })
+
+            }
+        }
+    </script>
+</body>
+</html>

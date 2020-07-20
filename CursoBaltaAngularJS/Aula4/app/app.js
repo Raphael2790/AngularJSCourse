@@ -11,7 +11,7 @@
             })
             .otherwise({
                 controller: 'HomeCtrl',
-                templateUrl: '404.html'
+                templateUrl: '404.html',
             })
     })
 })();

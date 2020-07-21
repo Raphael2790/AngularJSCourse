@@ -71,6 +71,7 @@
     <Content Include="Aula3\my-template-url.html" />
     <Content Include="Aula4\404.html" />
     <Content Include="Aula4\app\app.js" />
+    <Content Include="Aula4\app\areas\home\controllers\HomeCtrl.js" />
     <Content Include="Aula4\app\areas\home\views\index.html" />
     <Content Include="Aula4\Index.html" />
     <Content Include="content\bootstrap-grid.css" />
@@ -234,7 +235,6 @@
     <TypeScriptCompile Include="Scripts\index.d.ts" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Aula4\app\areas\home\controllers\" />
     <Folder Include="Aula4\app\data\" />
     <Folder Include="Aula4\app\directives\" />
     <Folder Include="Aula4\app\repositories\" />

@@ -3,7 +3,7 @@
 
     angular
         .module('app')
-        .controller('HomeCtrl', HomeCtrl)
+        .controller('HomeCtrl', HomeCtrl);
 
     HomeCtrl.$inject = ['$scope', '$location'];
 
@@ -11,4 +11,4 @@
         $scope.title = "Clientes Cadastrados"
     }
 
-}());
+})();

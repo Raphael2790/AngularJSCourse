@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <meta charset="utf-8" />
+    <title>CRUD</title>
+    <link href="/content/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+</head>
+<body ng-controller="MeuCtrl">
+    <h1 class="text-center">CRUD</h1>
+    <div class="container text-center">
+        <button class="btn btn-info" ng-click="obter()">GET</button>
+        <button class="btn btn-info" ng-click="obterPorId()">GET(23)</button>
+        <button class="btn btn-info" ng-click="criar()">POST</button>
+        <button class="btn btn-info" ng-click="alterar()">PUT</button>
+        <button class="btn btn-info" ng-click="excluir()">DELETE</button>
+    </div>
+    <script src="/Scripts/angular.min.js"></script>
+    <script>
+        var app = angular.module('app', []);
+
+        app.controller('MeuCtrl', ['$scope', '$http', function ($scope, $http) {
+            $scope.title = "Meu controller";
+            var serviceUrl = 'http://customer-service.azurewebsites.net/api/clientes';
+
+            $scope.obter = function () {
+                $http.get(serviceUrl).then((result)=> {
+                    console.log(result);
+                },
+                    (error) => {
+                        console.log(error)
+                    }
+                )
+            }
+            $scope.obterPorId = function () {
+                $http.get
+            }
+            $scope.criar = function () {
+
+            }
+            $scope.alterar = function () {
+
+            }
+            $scope.excluir = function () {
+
+            }
+        }])
+    </script>
+</body>
+</html>

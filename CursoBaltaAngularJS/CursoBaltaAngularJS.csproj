@@ -75,6 +75,7 @@
     <Content Include="Aula4\app\areas\home\views\index.html" />
     <Content Include="Aula4\app\repositorie\CustomersRepository.js" />
     <Content Include="Aula4\index.html" />
+    <Content Include="Aula5\Index.html" />
     <Content Include="bin\CursoBaltaAngularJS.dll" />
     <Content Include="bin\CursoBaltaAngularJS.pdb" />
     <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll" />

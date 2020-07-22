@@ -1,1 +1,9 @@
 ﻿<h1>{{title}}</h1>
+<input type="text" placeholder="Filtrar" ng-model="search" class="form-control" />
+<ul class="list-unstyled">
+    <li ng-repeat="customer in customers | filter: search">
+        {{customer.firstname}}-
+        {{customer.lastname}}-
+        {{customer.email}}
+    </li>
+</ul>

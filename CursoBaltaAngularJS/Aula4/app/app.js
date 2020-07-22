@@ -1,7 +1,7 @@
 ﻿(function () {
     'use strict';
 
-    const app = angular.module('app', ['ngAnimate', 'ngRoute'])
+    var app = angular.module('app', ['ngAnimate', 'ngRoute']);
 
     app.config(($routeProvider) => {
         $routeProvider
@@ -13,5 +13,9 @@
                 controller: 'HomeCtrl',
                 templateUrl: '404.html',
             })
+    })
+
+    app.controller('AppCtrl', function ($scope) {
+        $scope.title = "Demo 06"
     })
 })();

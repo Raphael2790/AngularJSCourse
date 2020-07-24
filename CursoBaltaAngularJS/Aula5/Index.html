@@ -10,10 +10,10 @@
     <h1 class="text-center">CRUD</h1>
     <div class="container text-center">
         <button class="btn btn-info" ng-click="obter()">GET</button>
-        <button class="btn btn-info" ng-click="obterPorId()">GET(23)</button>
+        <button class="btn btn-info" ng-click="obterPorId(23)">GET(23)</button>
         <button class="btn btn-info" ng-click="criar()">POST</button>
         <button class="btn btn-info" ng-click="alterar()">PUT</button>
-        <button class="btn btn-info" ng-click="excluir()">DELETE</button>
+        <button class="btn btn-info" ng-click="excluir(403)">DELETE</button>
     </div>
     <script src="/Scripts/angular.min.js"></script>
     <script>
@@ -28,21 +28,53 @@
                     console.log(result);
                 },
                     (error) => {
-                        console.log(error)
+                        console.log(error);
                     }
                 )
             }
-            $scope.obterPorId = function () {
-                $http.get
+            $scope.obterPorId = function (id) {
+                $http.get(serviceUrl + "/" + id).then((result) => {
+                    console.log(result);
+                },
+                    (error) => {
+                        console.log(error);
+                    })
             }
             $scope.criar = function () {
-
+                var cliente = {
+                    id: 0,
+                    firstName: "Raphael",
+                    lastname: "Silvestre",
+                    email:"raphael.silvestre@email.com"
+                }
+                $http.post(serviceUrl, cliente).then((result) => {
+                    console.log(result);
+                },
+                    (error) => {
+                        console.log(error);
+                    })
             }
             $scope.alterar = function () {
-
+                var cliente = {
+                    id: 403,
+                    firstName: "Raphael",
+                    lastname: "Silvestre",
+                    email: "raphael.silvestre@email.com"
+                }
+                $http.put(serviceUrl, cliente).then((result) => {
+                    console.log(result);
+                },
+                    (error) => {
+                        console.log(error);
+                    })
             }
-            $scope.excluir = function () {
-
+            $scope.excluir = function (id) {
+                $http.delete(serviceUrl + "/" + id).then((result) => {
+                    console.log(result);
+                },
+                    (error) => {
+                        console.log(error);
+                    })
             }
         }])
     </script>

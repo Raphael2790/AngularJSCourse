@@ -1,0 +1,62 @@
+﻿﻿
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="app">
+<head>
+    <title>Autenticação</title>
+</head>
+<body>
+    <div ng-controller="MeuCtrl">
+        <h1 class="text-center">Autenticação</h1>
+        <div class="container text-center">
+            <button class="btn btn-info" ng-click="autenticar()">Autenticar</button>
+            <br /><br />
+            <p>
+                <span>{{ token }}</span>
+            </p>
+            <hr />
+            <button class="btn btn-info" ng-click="get()">Buscar Clientes</button>
+        </div>
+    </div>
+
+    <script src="../Scripts/angular.min.js"></script>
+    <script>
+        var app = angular.module('app', []);
+
+        app.controller('MeuCtrl', ['$scope', '$http', function ($scope, $http) {
+            $scope.title = "Meu Controller";
+            $scope.token = '';
+            var serviceUrl = 'http://customer-service.azurewebsites.net/api/customers';
+
+            $scope.autenticar = function () {
+                DoAuth();
+            }
+
+            $scope.get = function () {
+                $http.get(serviceUrl, { headers: { 'Authorization': 'Bearer ' + $scope.token } }).then((result) => {
+                    console.log(result);
+                },
+                    (error) => {
+                        console.log(error);
+                    })
+            }
+
+            var authurl = 'http://customer-service.azurewebsites.net/api/security/token';
+
+            function DoAuth() {
+                var data = "grant_type=password&username=andrebaltieri&password=andrebaltieri";
+                $http.post(authurl, data, {
+                    headers: {
+                        'Content-type': 'application/x-www-form-urlencoded'
+                    }
+                }).then((result) => {
+                    $scope.token = result.access_token;
+                },
+                    (error) => {
+                        console.log(error);
+                    })
+            }
+
+        }]);
+    </script>
+</body>
+</html>

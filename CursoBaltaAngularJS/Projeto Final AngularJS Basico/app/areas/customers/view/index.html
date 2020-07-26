@@ -1,0 +1,20 @@
+﻿<h1>Editando o cliente {{customer.firstName}}</h1>
+
+<form class="col-md-5">
+    <input type="hidden" ng-model="customer.id"/>
+    <div class="form-group">
+        <label for="exampleInputEmail1">Nome</label>
+        <input type="text" ng-model="customer.firstName" class="form-control" placeholder="Digite seu primeiro nome..." id="exampleInputEmail1" aria-describedby="emailHelp">
+        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    </div>
+    <div class="form-group">
+        <label for="exampleInputEmail1">Sobrenome</label>
+        <input type="text" ng-model="customer.lastName" class="form-control" placeholder="Digite seu sobrenome..." id="exampleInputEmail1" aria-describedby="emailHelp">
+        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">E-mail</label>
+        <input type="email" ng-model="customer.email" class="form-control" placeholder="Digite seu e-mail..." id="exampleInputPassword1">
+    </div>
+    <button type="submit" ng-click="save()" class="btn btn-primary">Salvar</button>
+</form>

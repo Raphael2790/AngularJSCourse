@@ -1,10 +1,14 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <title></title>
-</head>
-<body>
-    <div>Olá</div>
-</body>
-</html>
+﻿<h3>Autentique-se</h3>
+
+<form class="col-md-5">
+    <div class="form-group">
+        <label for="exampleInputEmail1">Username</label>
+        <input type="text" ng-model="user.username" class="form-control" placeholder="Digite seu username..." id="exampleInputEmail1" aria-describedby="emailHelp">
+        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">Password</label>
+        <input type="password" ng-model="user.password" class="form-control" placeholder="Digite sua senha..." id="exampleInputPassword1">
+    </div>
+    <button type="submit" ng-click="Login()" class="btn btn-primary">Autenticar</button>
+</form>

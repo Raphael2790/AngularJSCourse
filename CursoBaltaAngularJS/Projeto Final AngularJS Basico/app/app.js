@@ -13,6 +13,18 @@
                 controller: 'LoginCtrl',
                 templateUrl: 'app/areas/login/views/index.html'
             })
+            .when('customer/new', {
+                controller: 'NewCustomerCtrl',
+                templateUrl: 'app/areas/customers/views/newcustomer.html'
+            })
+            .when('customer/edit/:id', {
+                controller: 'EditCustomersCtrl',
+                templateUrl: 'app/areas/customers/views/index.html'
+            })
+            .when('customer/delete/:id', {
+                controller: 'DeleteCustomersCtrl',
+                templateUrl: 'app/areas/customers/views/delete.html'
+            })
             .otherwise({
                 controller: 'HomeCtrl as vm',
                 templateUrl: '404.html',
@@ -20,15 +32,12 @@
             });
     });
 
+    app.run(function ($rootScope) {
+        $rootScope.token = "";
+        $rootScope.isAuthenticated = false;
+    })
+
     app.controller('AppCtrl', function AppCtrl($scope, $http) {
-        $scope.title = 'Demo 06';
-        $scope.shoppingCartTotalItems = 5;
-        $scope.shoppingCartItems = [
-            { title: 'Mouse' },
-            { title: 'Teclado' },
-            { title: 'Mousepad' },
-            { title: 'Monitor' },
-            { title: 'Celular' },
-        ]
+        
     });
 })();

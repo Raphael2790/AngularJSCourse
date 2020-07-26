@@ -115,10 +115,18 @@
     <Content Include="obj\Debug\CursoBaltaAngularJS.pdb" />
     <Content Include="Projeto Final AngularJS Basico\404.html" />
     <Content Include="Projeto Final AngularJS Basico\app\app.js" />
+    <Content Include="Projeto Final AngularJS Basico\app\areas\customers\controller\DeleteCustomersCtrl.js" />
+    <Content Include="Projeto Final AngularJS Basico\app\areas\customers\controller\EditCustomersCtrl.js" />
+    <Content Include="Projeto Final AngularJS Basico\app\areas\customers\controller\NewCustomerCtrl.js" />
+    <Content Include="Projeto Final AngularJS Basico\app\areas\customers\view\delete.html" />
+    <Content Include="Projeto Final AngularJS Basico\app\areas\customers\view\index.html" />
+    <Content Include="Projeto Final AngularJS Basico\app\areas\customers\view\newcustomer.html" />
     <Content Include="Projeto Final AngularJS Basico\app\areas\home\controllers\HomeCtrl.js" />
     <Content Include="Projeto Final AngularJS Basico\app\areas\home\views\index.html" />
     <Content Include="Projeto Final AngularJS Basico\app\areas\login\controllers\LoginCtrl.js" />
     <Content Include="Projeto Final AngularJS Basico\app\areas\login\views\index.html" />
+    <Content Include="Projeto Final AngularJS Basico\app\directives\CustomerBadgeDirective.js" />
+    <Content Include="Projeto Final AngularJS Basico\app\directives\my-template-url.html" />
     <Content Include="Projeto Final AngularJS Basico\app\repositorie\CustomersRepository.js" />
     <Content Include="Projeto Final AngularJS Basico\index.html" />
     <Content Include="Scripts\angular-animate.js" />
@@ -294,7 +302,6 @@
   <ItemGroup>
     <Folder Include="Aula4\app\directives\" />
     <Folder Include="obj\Debug\TempPE\" />
-    <Folder Include="Projeto Final AngularJS Basico\app\directives\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
